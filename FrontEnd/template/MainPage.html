@@ -15,7 +15,19 @@
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<h1 class="display-4">Live View</h1>
-			<p class="lead">-This is where the live view from the camera would be-</p>
+			<p class="lead"><video autoplay="true" id="videoElement"></video></p>
+			<script>
+			var video = document.querySelector("#videoElement");
+			if (navigator.mediaDevices.getUserMedia) {
+				navigator.mediaDevices.getUserMedia({ video: true })
+				.then(function (stream) {
+					video.srcObject = stream;
+				})
+				.catch(function (err0r) {
+					console.log("Something went wrong!");
+				});
+			}
+			</script>
 		</div>
 	</div>
 	<nav>
@@ -46,12 +58,12 @@
 							<span class="input-group-text" id="basic-addon3">API:</span>
 						</div>
 						<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-						</div>  
+						</div>
 
 						<button type="button" class="btn btn-primary">Submit</button>
 					</div>
 					<div class="tab-pane fade" id="nav-upload" role="tabpanel" aria-labelledby="nav-upload-tab">
-					
+
 						<p>Upload file here:</p>
 						<div class="input-group">
 							<div class="custom-file">
